@@ -38,7 +38,14 @@ function Put(req, res) {
 }
 
 function Delete(req, res) {
-
+  Users.findById(req.params.Id, (err, result) =>{
+    if (err) return res.status(400).send(err);
+    if (!result || result.length === 0) return res.status(404).send('No hay datos');
+    result.remove(error => {
+      if(err) return res.status(400).send(error);
+      return res.status(200).send('Eliminado');
+    })
+  })
 }
 
 module.exports = { Get, GetId, Post, Put, Delete }
