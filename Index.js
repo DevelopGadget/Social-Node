@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.use(body.json());
 app.use(body.urlencoded({ extended: false }));
 
-//require('./Routes/Router')(app);
+require('./Routes/Router')(app);
 
 mongoose.connect('mongodb://root:Fernando16@ds147451.mlab.com:47451/social-node', (err, res) => {
   if (err)  onsole.log('no conexion');
