@@ -4,14 +4,18 @@ const Users = require('../Models/Usuario');
 
 function Get(req, res) {
   Users.find({}, (err, result) => {
-    if (err) return res.status(400).send('Ha ocurrido un error vuelva a intentar');
+    if (err) return res.status(400).send(err);
     if (!result || result.length === 0) return res.status(404).send('No hay datos');
     return res.status(200).send(result);
   })
 }
 
 function GetId(req, res) {
-
+  Users.findById(req.params.Id, (err, result) =>{
+    if (err) return res.status(400).send(err);
+    if (!result || result.length === 0) return res.status(404).send('No hay datos');
+    return res.status(200).send(result);
+  })
 }
 
 function Post(req, res) {
@@ -23,7 +27,7 @@ function Post(req, res) {
   User.Nombre = req.body.Nombre;
 
   User.save((err, result) => {
-    if (err) return res.status(400).send({ Error: err });
+    if (err) return res.status(400).send(err);
     return res.status(200).send(result);
   });
 }

@@ -1,4 +1,4 @@
-const moongose = require("mongoose");
+const moongose = require('mongoose');
 const Model = moongose.Schema;
 
 const Usuario = Model({
