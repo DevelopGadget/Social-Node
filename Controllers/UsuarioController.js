@@ -1,6 +1,7 @@
 'use strict'
 
 const Users = require('../Models/Usuario');
+const Crypto = require('crypto');
 
 function Get(req, res) {
   Users.find({}, (err, result) => {
@@ -22,7 +23,7 @@ function Post(req, res) {
 
   let User = new Users();
   User.Username = req.body.Username;
-  User.Password = req.body.Password;
+  User.Password = req.body.Password ? Crypto.createHmac('sha256', 'Secret').update(req.body.Password).digest('base64') : req.body.Password;
   User.PhotoUrl = req.body.PhotoUrl;
   User.Nombre = req.body.Nombre;
 
