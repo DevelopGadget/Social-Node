@@ -30,7 +30,7 @@ function Post(req, res) {
 
   let User = new Users();
   User.Username = req.body.Username;
-  User.Password = req.body.Password ? Crypto.createHmac('sha256', 'Secret').update(req.body.Password).digest('base64') : req.body.Password;
+  User.Password = req.body.Password ? Crypto.createHmac('sha256', process.env.Llave).update(req.body.Password).digest('base64') : req.body.Password;
   User.PhotoUrl = req.body.PhotoUrl;
   User.Nombre = req.body.Nombre;
 
@@ -70,7 +70,7 @@ function Login(req, res){
   Users.find({Username: req.body.Username}, (err, User)=>{
     if(err) return res.status(400).send(err);
     if(!User || User.length === 0) return res.status(404).send('No Encontrado');
-    if(User[0].Password !== Crypto.createHmac('sha256', 'Secret').update(req.body.Password).digest('base64')) return res.status(401).send('No Coincide');
+    if(User[0].Password !== Crypto.createHmac('sha256', process.env.Llave).update(req.body.Password).digest('base64')) return res.status(401).send('No Coincide');
     return res.status(200).send(Jwt.CreateToken(User[0]));
   })
 }

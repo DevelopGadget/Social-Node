@@ -15,8 +15,8 @@ app.use(body.urlencoded({ extended: false }));
 
 require('./Routes/Router')(app);
 
-mongoose.connect('mongodb://root:Fernando16@ds147451.mlab.com:47451/social-node', (err, res) => {
-  if (err)  onsole.log('no conexion');
+mongoose.connect(process.env.Mlab, (err, res) => {
+  if (err)  console.log('no conexion');
   //Listen
   app.listen(app.get('port'), () => {
     console.log('Iniciado ' + app.get('port'));
