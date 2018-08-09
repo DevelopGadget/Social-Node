@@ -5,10 +5,12 @@ const app = express();
 const morgan = require('morgan');
 const body = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 //Puerto
 app.set('port', process.env.PORT || 3000);
 
 //Uses
+app.use(cors());
 app.use(morgan('dev'));
 app.use(body.json());
 app.use(body.urlencoded({ extended: false }));
