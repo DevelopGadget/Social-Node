@@ -9,5 +9,5 @@ module.exports = function (app){
   app.put('/User/:Id', User.Put);
   app.delete('/User/:Id', User.Delete);
   app.get('/User/:Id', User.GetId);
-  app.get('/User/:Id/Decode', User.Decode);
+  app.get('/User/Decode', User.Decode);
 }
