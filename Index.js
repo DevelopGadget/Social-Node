@@ -20,8 +20,6 @@ require('./Routes/Router')(app);
 mongoose.connect(process.env.Mlab, (err, res) => {
   if (err)  console.log('no conexion');
   //Listen
-  app.listen(app.get('port'), () => {
-    console.log('Iniciado ' + app.get('port'));
-  });
+  app.listen(app.get('port'), () => {});
 });
 

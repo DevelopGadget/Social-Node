@@ -75,5 +75,12 @@ function Login(req, res) {
   })
 }
 
-module.exports = { Get, GetId, Post, Put, Delete, Login }
+function Decode(req, res){
+  if (!req.headers.authorization) return res.status(401).send({ resultado: 'no autorizado' });
+  const Decode = Jwt.Decode(req.headers.authorization);
+  if (Decode == false) return res.status(401).send({ resultado: 'no autorizado' });
+  res.status(401).send({ resultado: Decode });
+}
+
+module.exports = { Get, GetId, Post, Put, Delete, Login, Decode }
 

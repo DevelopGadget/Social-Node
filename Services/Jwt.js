@@ -5,7 +5,7 @@ const moment = require('moment');
 
 function CreateToken(user) {
   return jwt.encode({
-    sub: user._id,
+    sub: {Id: user._id, Username: user.Username, Nombre: user.Nombre, PhotoUrl: user.PhotoUrl},
     iat: moment().unix(),
     exp: moment().add(30, 'days').unix()
   }, process.env.Llave);
